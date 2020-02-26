@@ -30,8 +30,8 @@ public class FilterStream {
         // 旧的方式 a
         Iterator<Employee> iterator = employees.iterator();
         while (iterator.hasNext()) {
-            System.out.println("Predicate 断言年龄是否大于 20");
             Employee next = iterator.next();
+            System.out.println("Predicate 断言年龄是否大于 20: " + next.getName());
             if (next.getAge() > 20) {
                 System.out.println(next);
             }
@@ -41,7 +41,7 @@ public class FilterStream {
 
         // 旧的方式 b
         for (Employee employee : employees) {
-            System.out.println("Predicate 断言年龄是否大于 20");
+            System.out.println("Predicate 断言年龄是否大于 20: " + employee.getName());
             if (employee.getAge() > 20) {
                 System.out.println(employee);
             }
@@ -56,7 +56,7 @@ public class FilterStream {
         // 2 中间操作
         // 循环所有元素进行判断
         Stream<Employee> stream1 = stream.filter(e -> {
-            System.out.println("Predicate 断言年龄是否大于 20");
+            System.out.println("Predicate 断言年龄是否大于 20: " + e.getName());
             return e.getAge() > 20;
         });
         // 3 终止操作
@@ -68,7 +68,7 @@ public class FilterStream {
         // Stream 方式 - 连写
         employees.stream()
                 .filter(e -> {
-                    System.out.println("Predicate 断言年龄是否大于 20");
+                    System.out.println("Predicate 断言年龄是否大于 20: " + e.getName());
                     return e.getAge() > 20;
                 })
                 .forEach(System.out::println);
@@ -82,7 +82,7 @@ public class FilterStream {
         // 多次循环, 直到找到 2 个满足条件的元素后, 结束循环
         employees.stream()
                 .filter(e -> {
-                    System.out.println("Predicate 断言年龄是否大于 20");
+                    System.out.println("Predicate 断言年龄是否大于 20: " + e.getName());
                     return e.getAge() > 20;
                 })
                 .limit(2)
@@ -94,7 +94,7 @@ public class FilterStream {
         employees.stream()
                 .limit(2)
                 .filter(e -> {
-                    System.out.println("Predicate 断言年龄是否大于 20");
+                    System.out.println("Predicate 断言年龄是否大于 20: " + e.getName());
                     return e.getAge() > 20;
                 })
                 .forEach(System.out::println);
