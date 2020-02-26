@@ -13,7 +13,7 @@ import java.util.stream.Stream;
  */
 public class FilterStream {
 
-    List<Employee> employees = Arrays.asList(
+    private List<Employee> employeeList = Arrays.asList(
             new Employee("Amy", 10, 10.0),
             new Employee("Ford", 30, 30.0),
             new Employee("Mark", 40, 40.0),
@@ -28,7 +28,7 @@ public class FilterStream {
     @Test
     public void filter() {
         // 旧的方式 a
-        Iterator<Employee> iterator = employees.iterator();
+        Iterator<Employee> iterator = employeeList.iterator();
         while (iterator.hasNext()) {
             Employee next = iterator.next();
             System.out.println("Predicate 断言年龄是否大于 20: " + next.getName());
@@ -40,7 +40,7 @@ public class FilterStream {
         System.out.println("------");
 
         // 旧的方式 b
-        for (Employee employee : employees) {
+        for (Employee employee : employeeList) {
             System.out.println("Predicate 断言年龄是否大于 20: " + employee.getName());
             if (employee.getAge() > 20) {
                 System.out.println(employee);
@@ -49,10 +49,10 @@ public class FilterStream {
 
         System.out.println("------");
 
-        // Stream 方式 - 分开写
+        // Stream 方式 - 分步写
 
         // 1 创建 Stream
-        Stream<Employee> stream = employees.stream();
+        Stream<Employee> stream = employeeList.stream();
         // 2 中间操作
         // 循环所有元素进行判断
         Stream<Employee> stream1 = stream.filter(e -> {
@@ -66,7 +66,7 @@ public class FilterStream {
         System.out.println("------");
 
         // Stream 方式 - 连写
-        employees.stream()
+        employeeList.stream()
                 .filter(e -> {
                     System.out.println("Predicate 断言年龄是否大于 20: " + e.getName());
                     return e.getAge() > 20;
@@ -80,7 +80,7 @@ public class FilterStream {
     @Test
     public void limit() {
         // 多次循环, 直到找到 2 个满足条件的元素后, 结束循环
-        employees.stream()
+        employeeList.stream()
                 .filter(e -> {
                     System.out.println("Predicate 断言年龄是否大于 20: " + e.getName());
                     return e.getAge() > 20;
@@ -91,7 +91,7 @@ public class FilterStream {
         System.out.println("------");
 
         // 循环两次 (不管是否满足过滤条件) 后, 结束循环
-        employees.stream()
+        employeeList.stream()
                 .limit(2)
                 .filter(e -> {
                     System.out.println("Predicate 断言年龄是否大于 20: " + e.getName());
@@ -108,14 +108,14 @@ public class FilterStream {
     @Test
     public void skip() {
         // 所有满足条件的元素
-        employees.stream()
+        employeeList.stream()
                 .filter(e -> e.getAge() > 20)
                 .forEach(System.out::println);
 
         System.out.println("------");
 
         // 跳过前 2 个满足条件的元素
-        employees.stream()
+        employeeList.stream()
                 .filter(e -> e.getAge() > 20)
                 .skip(2)
                 .forEach(System.out::println);
@@ -123,7 +123,7 @@ public class FilterStream {
         System.out.println("------");
 
         // 跳过前 3 个满足条件的元素
-        employees.stream()
+        employeeList.stream()
                 .filter(e -> e.getAge() > 20)
                 .skip(3)
                 .forEach(System.out::println);
@@ -135,7 +135,7 @@ public class FilterStream {
     @Test
     public void distinct() {
         // 跳过前 1 个满足条件的元素
-        employees.stream()
+        employeeList.stream()
                 .filter(e -> e.getAge() < 30)
                 .skip(1)
                 .forEach(System.out::println);
@@ -143,7 +143,7 @@ public class FilterStream {
         System.out.println("------");
 
         // 跳过前 1 个满足条件的元素, 并去重剩余元素
-        employees.stream()
+        employeeList.stream()
                 .filter(e -> e.getAge() < 30)
                 .skip(1)
                 .distinct()

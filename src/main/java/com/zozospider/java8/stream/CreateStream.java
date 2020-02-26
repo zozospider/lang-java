@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class CreateStream {
@@ -15,6 +16,17 @@ public class CreateStream {
      * 2. 通过 Arrays 的静态方法 stream() 创建
      * 3. 通过 Streams 的静态方法 of() 创建
      * 4. 创建无限流
+     *
+     * 注意: a. 当元素为引用类型数组时, Arrays.stream() 和 Stream.of() 创建流的效果一样.
+     *             Employee[] employees = new Employee[]{new Employee("Amy"), new Employee("Bob")};
+     *             Stream<Employee> employeeStream1 = Arrays.stream(employees);
+     *             Stream<Employee> employeeStream2 = Stream.of(employees);
+     *      b. 当元素为基本类型数组时, 建议使用 Arrays.stream(), 且返回的流为子类特定流:
+     *             int[] ints = new int[]{1, 2, 3};
+     *             IntStream intStream = Arrays.stream(ints);
+     *      c. 当元素为 char[] 时, 需要特殊对待:
+     *             char[] chars = {'a','c','e'};
+     *             Stream<Character> charStream = IntStream.range(0, chars.length).mapToObj(i -> chars[i]);
      */
     @Test
     public void create() {
@@ -34,20 +46,37 @@ public class CreateStream {
 
         System.out.println("------");
 
+        // 注意: a. 当元素为引用类型数组时, Arrays.stream() 和 Stream.of() 创建流的效果一样.
+        //          Employee[] employees = new Employee[]{new Employee("Amy"), new Employee("Bob")};
+        //          Stream<Employee> streamA1 = Arrays.stream(employees);
+        //          Stream<Employee> streamA2 = Stream.of(employees);
+        //      b. 当元素为基本类型数组时, 建议使用 Arrays.stream(), 且返回的流为子类特定流:
+        //          int[] ints = new int[]{1, 2, 3};
+        //          IntStream streamB = Arrays.stream(ints);
+        //      c. 当元素为 char[] 时, 需要特殊对待:
+        //          char[] arr = {'a','c','e'};
+        //          Stream<Character> streamC = IntStream.range(0, arr.length).mapToObj(i -> arr[i]);
+
         // 2
 
         // 创建一个 Employee 数组, 并转换为 Stream, 并循环打印每个元素的值
-        Employee[] employees2 = new Employee[]{new Employee("Amy"), new Employee("Bob")};
-        Stream<Employee> stream2 = Arrays.stream(employees2);
-        stream2.forEach(System.out::println);
+        Employee[] employees2a = new Employee[]{new Employee("Amy"), new Employee("Bob")};
+        Stream<Employee> stream2a = Stream.of(employees2a);
+        stream2a.forEach(System.out::println);
+
+        // 创建一个 int[] 数组, 并转换为元素为 int[] 的 Stream, 此处容易产生歧义, 不推荐使用
+        // 参考 3 中使用方式
+        int[] intArray2b = new int[]{1, 2, 3};
+        Stream<int[]> stream2b = Stream.of(intArray2b);
+        stream2b.forEach(System.out::println);
 
         System.out.println("------");
 
         // 3
 
         // 创建一个 Employee 数组, 并转换为 Stream, 并循环打印每个元素的值
-        Employee[] employees3 = new Employee[]{new Employee("Amy"), new Employee("Bob")};
-        Stream<Employee> stream3 = Stream.of(employees3);
+        int[] intArray3 = new int[]{1, 2, 3};
+        IntStream stream3 = Arrays.stream(intArray3);
         stream3.forEach(System.out::println);
 
         System.out.println("------");
