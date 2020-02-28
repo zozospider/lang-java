@@ -6,6 +6,9 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * sorted: 中间操作 - 排序
+ */
 public class SortedStream {
 
     List<String> stringList = Arrays.asList("aaa", "ccc", "bbb");
@@ -18,6 +21,9 @@ public class SortedStream {
             new Employee("Bob", 20, 20.0)
     );
 
+    /**
+     * 中间操作
+     */
     @Test
     public void sorted() {
         // 默认使用当前元素类型的排序功能 (实现了 Comparable 接口)
