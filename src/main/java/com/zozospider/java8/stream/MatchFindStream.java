@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 匹配与查找 - 终止操作
+ * match find count max min: 终止操作
  */
 public class MatchFindStream {
 
@@ -86,30 +86,28 @@ public class MatchFindStream {
 
     /**
      * 终止操作
-     * count: 返回流中元素的总个数 (long)
-     */
-    @Test
-    public void count() {
-        long count = employeeList.stream()
-                .filter(e -> Employee.Size.M.equals(e.getSize()))
-                .count();
-        System.out.println(count);
-    }
-
-    /**
-     * 终止操作
-     * 1. 返回流中元素的最大值
-     * 2. 返回流中元素的最小值
+     * 1. 返回流中元素的总个数 (long)
+     * 2. 返回流中最大值的元素 (Optional)
+     * 3. 返回流中最小值的元素 (Optional)
      */
     @Test
     public void maxMin() {
         // 1
+        long count = employeeList.stream()
+                .filter(e -> Employee.Size.M.equals(e.getSize()))
+                .count();
+        System.out.println(count);
+
+        System.out.println("------");
+
+        // 2
         Optional<Employee> maxOptionalEmployee = employeeList.stream()
                 .max(Comparator.comparingInt(Employee::getAge));
         System.out.println(maxOptionalEmployee.orElse(new Employee("默认名称")));
 
         System.out.println("------");
 
+        // 3
         Optional<Integer> minOptionalAge = employeeList.stream()
                 .map(Employee::getAge)
                 .min(Integer::compareTo);

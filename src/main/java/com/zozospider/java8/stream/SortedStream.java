@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * sorted: 中间操作 - 排序
+ * sorted: 中间操作
  */
 public class SortedStream {
 

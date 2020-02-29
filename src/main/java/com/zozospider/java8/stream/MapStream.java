@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+/**
+ * map: 中间操作
+ */
 public class MapStream {
 
     private List<String> stringList = Arrays.asList("aaa", "bbb", "ccc");

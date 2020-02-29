@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * 筛选和切片
+ * filter: 中间操作
  */
 public class FilterStream {
 

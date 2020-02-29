@@ -6,6 +6,9 @@ import org.junit.Test;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * collect: 终止操作
+ */
 public class CollectStream {
 
     private List<Employee> employeeList = Arrays.asList(

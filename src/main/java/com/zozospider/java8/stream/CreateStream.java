@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+/**
+ * create: 创建操作
+ */
 public class CreateStream {
 
     /**

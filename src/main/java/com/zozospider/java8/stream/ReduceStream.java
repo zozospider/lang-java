@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * reduce: 终止操作
+ */
 public class ReduceStream {
 
     private List<Integer> integerList = Arrays.asList(1, 2, 3, 4, 5);
