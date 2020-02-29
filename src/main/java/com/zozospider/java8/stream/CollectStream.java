@@ -64,9 +64,14 @@ public class CollectStream {
         Long collectCountB = employeeList.stream().count();
         // c
         int collectCountC = employeeList.size();
+        // d
+        Optional<Integer> reduceSum = employeeList.stream()
+                .map(e -> 1)
+                .reduce(Integer::sum);
         System.out.println(collectCountA);
         System.out.println(collectCountB);
         System.out.println(collectCountC);
+        System.out.println(reduceSum);
 
         // 总和
         // a
