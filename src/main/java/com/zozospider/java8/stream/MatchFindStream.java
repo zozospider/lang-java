@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 查找与匹配 - 终止操作
+ * 匹配与查找 - 终止操作
  */
 public class MatchFindStream {
 
